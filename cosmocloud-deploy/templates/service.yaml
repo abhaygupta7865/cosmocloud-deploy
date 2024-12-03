@@ -1,15 +1,36 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "cosmocloud-deploy.fullname" . }}
-  labels:
-    {{- include "cosmocloud-deploy.labels" . | nindent 4 }}
+  name: backend-svc
 spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
   selector:
-    {{- include "cosmocloud-deploy.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "cosmocloud-deploy.name" . }}
+  ports:
+    - port: 8000
+      targetPort: 8000
+  type: {{ .Values.backend.service.type }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+spec:
+  selector:
+    app.kubernetes.io/name: {{ include "cosmocloud-deploy.name" . }}
+  ports:
+    - port: 5175
+      nodePort: 31000
+  type: {{ .Values.frontend.service.type }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-svc
+spec:
+  selector:
+    app.kubernetes.io/name: {{ include "cosmocloud-deploy.name" . }}
+  ports:
+    - port: 6379
+  type: {{ .Values.redis.service.type }}
