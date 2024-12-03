@@ -5,16 +5,16 @@ This repository contains the Helm chart (cosmocloud-deploy) to deploy a simple w
 
 Table of Contents
 
-Overview
-Prerequisites
-Installation
-Deployment Instructions
-Application Architecture
-Services
-Environment Variables
-Testing the Application
-Cleanup
-Contributing
+Overview 
+Prerequisites 
+Installation 
+Deployment Instructions 
+Application Architecture 
+Services 
+Environment Variables 
+Testing the Application 
+Cleanup 
+Contributing 
 
 Overview-
 
